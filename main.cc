@@ -4,33 +4,31 @@
 #define ROWS 10000
 #define COLUMNS 10000
 
-void horizontal_read(int** &matrix) {
+void vertical_read(int* &matrix) {
     int item;
     for (size_t x = 0; x < ROWS; ++x) {
         for (size_t y = 0; y < COLUMNS; ++y) {
-            item = matrix[x][y];
+            item = matrix[y * COLUMNS + x];
         }
     }
 }
 
-void vertical_read(int** &matrix) {
+
+void horizontal_read(int* &matrix) {
     int item;
     for (size_t y = 0; y < COLUMNS; ++y) {
         for (size_t x = 0; x < ROWS; ++x) {
-            item = matrix[x][y];
+            item = matrix[y * COLUMNS + x];
         }
     }
 }
 
 int main() {
-    int** matrix = (int**)malloc(ROWS * sizeof(int*));
-    for (int x = 0; x < ROWS; x++) {
-        matrix[x] = (int*)malloc(COLUMNS * sizeof(int));
-    }
+    int* matrix = (int*)malloc(COLUMNS * ROWS * sizeof(int));
 
     for (int x = 0; x < ROWS; ++x) {
         for (int y = 0; y < COLUMNS; ++y) {
-            matrix[x][y] = 1;
+            matrix[y * COLUMNS + x] = 1;
         }
     }
 
@@ -56,9 +54,6 @@ int main() {
 
 
     // Freeing memory
-    for (int x = 0; x < ROWS; x++) {
-        free(matrix[x]);
-    }
     free(matrix);
 
     return 0;
