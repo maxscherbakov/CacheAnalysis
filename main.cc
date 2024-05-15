@@ -58,3 +58,6 @@ int main() {
 
     return 0;
 }
+// Results:
+// Time for horithontal read: 115
+// Time for vertical read: 527
